@@ -17,6 +17,7 @@ message DownloadConfig {
     string output_size = 1;
     int32 max_tries_before_end_of_trading = 2;
     string date_format = 3;
+    int32 batch_size_for_persistence = 4;
 }
 
 message QuestDb {

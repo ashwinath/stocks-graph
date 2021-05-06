@@ -8,10 +8,11 @@ downloadConfig:
   maxTriesBeforeEndOfTrading: 30
   outputSize: full
   dateFormat: "YYYY-MM-DD"
+  batchSizeForPersistence: 20
 
 questDb:
-  minConnections: 3
-  maxConnections: 10
+  minConnections: 5
+  maxConnections: 20
   user: admin
   password: quest
   host: "127.0.0.1"

@@ -4,7 +4,7 @@ import yaml
 from google.protobuf import json_format
 from generated.proto.config_pb2 import Config
 
-def parse_args():
+def parse_args() -> Config:
     parser = argparse.ArgumentParser(description="Balance your portfolio.")
     parser.add_argument(
         '--config',

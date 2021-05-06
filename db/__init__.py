@@ -16,26 +16,48 @@ class QuestDB(object):
         self.init_tables()
 
     def init_tables(self):
-        pass
-
-    def write(self):
         connection = None
         cursor = None
         try:
             connection = self._db.getconn()
             cursor = connection.cursor()
-            cursor.execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);")
-            # insert 10 records
-            for x in range(10):
-              now = datetime.utcnow()
-              date = datetime.now().date()
-              cursor.execute("""
-                INSERT INTO trades
-                VALUES (%s, %s, %s, %s);
-                """, (now, date, "python example", x))
-            # commit records
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS stocks_history (
+                    ts TIMESTAMP,
+                    date DATE,
+                    symbol STRING,
+                    price double
+                ) timestamp(ts);
+                """
+            )
             connection.commit()
-            cursor.execute("SELECT * FROM trades;")
+        finally:
+            if connection:
+                connection.close()
+            if cursor:
+                cursor.close()
+
+    def write(self, stock_data_bulk):
+        connection = None
+        cursor = None
+        try:
+            connection = self._db.getconn()
+            cursor = connection.cursor()
+            # TODO: change to bulk insert
+            for stock in stock_data_bulk:
+                cursor.execute("""
+                    INSERT INTO stocks_history
+                    VALUES (%s, %s, %s, %s);
+                    """,
+                    (
+                        stock["ts"],
+                        stock["date"],
+                        stock["symbol"],
+                        stock["price"],
+                    ),
+                )
+            connection.commit()
+            cursor.execute("SELECT * FROM stocks_history;")
             records = cursor.fetchall()
             for row in records:
                 print(row)

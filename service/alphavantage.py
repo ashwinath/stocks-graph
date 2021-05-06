@@ -1,8 +1,12 @@
 import arrow
 from alpha_vantage.timeseries import TimeSeries
 
-def download_data(config):
-    data = {}
+from generated.proto.config_pb2 import Config
+from typing import Generator, List, Dict, Union
+
+def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]], None, None]:
+    counter = 0
+    all_stocks = []
     for stock in config.stocks:
         ts = TimeSeries()
         data, metadata = ts.get_daily_adjusted(
@@ -10,10 +14,14 @@ def download_data(config):
             outputsize=config.download_config.output_size,
         )
 
-        all_stocks = []
         number_of_tries = 0
         current_arrow_date = arrow.get(stock.first_transaction)
         while True:
+            if counter == config.download_config.batch_size_for_persistence:
+                yield all_stocks
+                counter = 0
+                all_stocks = []
+
             date_string = current_arrow_date.format(config.download_config.date_format)
             if number_of_tries > config.download_config.max_tries_before_end_of_trading:
                 break
@@ -24,15 +32,15 @@ def download_data(config):
                 continue
 
             stock_price = data[date_string]["5. adjusted close"]
+
             all_stocks.append({
-                "date": current_arrow_date.datetime,
-                "price": stock_price,
+                "ts": current_arrow_date.shift(microseconds=1).datetime.replace(tzinfo=None),
+                "date": current_arrow_date.date(),
                 "symbol": metadata["2. Symbol"],
+                "price": float(stock_price),
             })
+            counter += 1
 
             current_arrow_date = current_arrow_date.shift(days=1)
             number_of_tries = 0
-
-        data["stock.symbol"] = all_stocks
-
-    return data
+    yield all_stocks
