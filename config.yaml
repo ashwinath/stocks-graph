@@ -1,0 +1,9 @@
+stocks:
+- symbol: IWDA.LON
+  first_transaction: "2021-03-11"
+- symbol: CSPX.LON
+  first_transaction: "2021-03-29"
+downloadConfig:
+  max_tries_before_end_of_trading: 30
+  output_size: full
+  date_format: "YYYY-MM-DD"

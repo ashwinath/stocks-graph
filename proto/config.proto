@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package ashwin.stocksbalancer.spec;
+
+message Config {
+    repeated Stock stocks = 1;
+    DownloadConfig download_config = 2;
+}
+
+message Stock {
+    string symbol = 1;
+    string first_transaction = 2;
+}
+
+message DownloadConfig {
+    string output_size = 1;
+    int32 max_tries_before_end_of_trading = 2;
+    string date_format = 3;
+}
