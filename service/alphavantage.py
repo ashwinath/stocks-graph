@@ -1,17 +1,23 @@
 import arrow
-from alpha_vantage.timeseries import TimeSeries
+import logging
 
-from generated.proto.config_pb2 import Config
+from alpha_vantage.timeseries import TimeSeries
+from generated.proto.config_pb2 import Config, Stock, DownloadConfig
 from typing import Generator, List, Dict, Union
 
 def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]], None, None]:
+    logging.info("Downloading stock history from Alphavantage.")
     counter = 0
     all_stocks = []
     for stock in config.stocks:
+        if stock.api != Stock.Alphavantage:
+            continue
         ts = TimeSeries()
         data, metadata = ts.get_daily_adjusted(
             symbol=stock.symbol,
-            outputsize=config.download_config.output_size,
+            outputsize=DownloadConfig.AlphavantageOutputSize.Name(
+                config.download_config.alphavantage_output_size,
+            ),
         )
 
         number_of_tries = 0
@@ -34,7 +40,7 @@ def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]],
             stock_price = data[date_string]["5. adjusted close"]
 
             all_stocks.append({
-                "ts": current_arrow_date.shift(microseconds=1).datetime.replace(tzinfo=None),
+                "ts": current_arrow_date.datetime.replace(tzinfo=None),
                 "date": current_arrow_date.date(),
                 "symbol": metadata["2. Symbol"],
                 "price": float(stock_price),
@@ -43,4 +49,5 @@ def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]],
 
             current_arrow_date = current_arrow_date.shift(days=1)
             number_of_tries = 0
+    logging.info("Done downloading stock history from Alphavantage.")
     yield all_stocks

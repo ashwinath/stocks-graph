@@ -1,14 +1,20 @@
 stocks:
 - symbol: IWDA.LON
   firstTransaction: "2021-03-11"
+  api: Alphavantage
 - symbol: CSPX.LON
   first_transaction: "2021-03-29"
+  api: Alphavantage
+- symbol: MBH.SI
+  first_transaction: "2021-04-04"
+  api: Yahoo
 
 downloadConfig:
   maxTriesBeforeEndOfTrading: 30
-  outputSize: full
   dateFormat: "YYYY-MM-DD"
   batchSizeForPersistence: 20
+  alphavantageOutputSize: full
+  yahooPeriod: max
 
 timescaleDb:
   minConnections: 5

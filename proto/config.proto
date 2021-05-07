@@ -9,15 +9,30 @@ message Config {
 }
 
 message Stock {
+    enum ApiKind {
+        Alphavantage = 0;
+        Yahoo = 1; // Yahoo should not be used whenever possible because it's inaccurate
+    }
+
     string symbol = 1;
     string first_transaction = 2;
+    ApiKind api = 3;
 }
 
 message DownloadConfig {
-    string output_size = 1;
-    int32 max_tries_before_end_of_trading = 2;
-    string date_format = 3;
-    int32 batch_size_for_persistence = 4;
+    enum AlphavantageOutputSize {
+        full = 0;
+        compact = 1;
+    }
+    enum YahooPeriod {
+        max = 0;
+    }
+    int32 max_tries_before_end_of_trading = 1;
+    string date_format = 2;
+    int32 batch_size_for_persistence = 3;
+    AlphavantageOutputSize alphavantage_output_size = 4;
+    YahooPeriod yahoo_period = 5;
+    
 }
 
 message TimescaleDb {
