@@ -1,0 +1,36 @@
+stocks:
+- symbol: VOO
+  firstTransaction: "2021-01-01"
+  api: Alphavantage
+  currency: USD
+- symbol: MSFT
+  first_transaction: "2021-01-01"
+  api: Alphavantage
+  currency: USD
+- symbol: A35.SI
+  first_transaction: "2021-01-01"
+  api: Yahoo
+  currency: SGD
+
+downloadConfig:
+  dateFormat: "YYYY-MM-DD"
+  alphavantageOutputSize: full
+  yahooPeriod: max
+
+timescaleDb:
+  minConnections: 5
+  maxConnections: 20
+  user: postgres
+  password: password
+  host: "127.0.0.1"
+  port: "5432"
+  database: postgres
+
+currency:
+  baseCurrency: USD
+  otherCurrencies:
+  - currency: SGD
+    firstTransaction: "2021-01-01"
+
+trades:
+  folder: sample/trades/

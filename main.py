@@ -32,7 +32,7 @@ def main():
     config = parse_args()
 
     dependencies = create_dependencies(config)
-    # download_data(config, dependencies)
+    download_data(config, dependencies)
 
     trades = get_all_trade_configs(config)
     dependencies.trade_manager.process(trades)

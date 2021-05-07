@@ -1,0 +1,19 @@
+trades:
+- symbol: "MSFT"
+  quantity: 10
+  priceEach: 100.2
+  type: buy
+  date: "2021-01-01"
+  currency: USD
+- symbol: "VOO"
+  quantity: 20
+  priceEach: 250
+  type: buy
+  date: "2021-01-01"
+  currency: USD
+- symbol: "A35.SI"
+  quantity: 20
+  priceEach: 250
+  type: buy
+  date: "2021-01-01"
+  currency: SGD
