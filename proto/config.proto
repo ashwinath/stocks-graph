@@ -39,11 +39,9 @@ message DownloadConfig {
     enum YahooPeriod {
         max = 0;
     }
-    int32 max_tries_before_end_of_trading = 1;
-    string date_format = 2;
-    int32 batch_size_for_persistence = 3;
-    AlphavantageOutputSize alphavantage_output_size = 4;
-    YahooPeriod yahoo_period = 5;
+    string date_format = 1;
+    AlphavantageOutputSize alphavantage_output_size = 2;
+    YahooPeriod yahoo_period = 3;
     
 }
 

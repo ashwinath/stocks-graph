@@ -13,9 +13,7 @@ stocks:
   currency: SGD
 
 downloadConfig:
-  maxTriesBeforeEndOfTrading: 30
   dateFormat: "YYYY-MM-DD"
-  batchSizeForPersistence: 20
   alphavantageOutputSize: full
   yahooPeriod: max
 

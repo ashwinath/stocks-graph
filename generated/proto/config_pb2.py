@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ashwin.stocksbalancer.spec',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x12proto/config.proto\x12\x1a\x61shwin.stocksbalancer.spec\"\xf7\x01\n\x06\x43onfig\x12\x31\n\x06stocks\x18\x01 \x03(\x0b\x32!.ashwin.stocksbalancer.spec.Stock\x12\x43\n\x0f\x64ownload_config\x18\x02 \x01(\x0b\x32*.ashwin.stocksbalancer.spec.DownloadConfig\x12=\n\x0ctimescale_db\x18\x03 \x01(\x0b\x32\'.ashwin.stocksbalancer.spec.TimescaleDb\x12\x36\n\x08\x63urrency\x18\x04 \x01(\x0b\x32$.ashwin.stocksbalancer.spec.Currency\"h\n\x08\x43urrency\x12\x15\n\rbase_currency\x18\x01 \x01(\t\x12\x45\n\x10other_currencies\x18\x02 \x03(\x0b\x32+.ashwin.stocksbalancer.spec.OtherCurrencies\">\n\x0fOtherCurrencies\x12\x10\n\x08\x63urrency\x18\x01 \x01(\t\x12\x19\n\x11\x66irst_transaction\x18\x02 \x01(\t\"\xa4\x01\n\x05Stock\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x19\n\x11\x66irst_transaction\x18\x02 \x01(\t\x12\x36\n\x03\x61pi\x18\x03 \x01(\x0e\x32).ashwin.stocksbalancer.spec.Stock.ApiKind\x12\x10\n\x08\x63urrency\x18\x04 \x01(\t\"&\n\x07\x41piKind\x12\x10\n\x0c\x41lphavantage\x10\x00\x12\t\n\x05Yahoo\x10\x01\"\xee\x02\n\x0e\x44ownloadConfig\x12\'\n\x1fmax_tries_before_end_of_trading\x18\x01 \x01(\x05\x12\x13\n\x0b\x64\x61te_format\x18\x02 \x01(\t\x12\"\n\x1a\x62\x61tch_size_for_persistence\x18\x03 \x01(\x05\x12\x63\n\x18\x61lphavantage_output_size\x18\x04 \x01(\x0e\x32\x41.ashwin.stocksbalancer.spec.DownloadConfig.AlphavantageOutputSize\x12L\n\x0cyahoo_period\x18\x05 \x01(\x0e\x32\x36.ashwin.stocksbalancer.spec.DownloadConfig.YahooPeriod\"/\n\x16\x41lphavantageOutputSize\x12\x08\n\x04\x66ull\x10\x00\x12\x0b\n\x07\x63ompact\x10\x01\"\x16\n\x0bYahooPeriod\x12\x07\n\x03max\x10\x00\"\x8d\x01\n\x0bTimescaleDb\x12\x17\n\x0fmin_connections\x18\x01 \x01(\x05\x12\x17\n\x0fmax_connections\x18\x02 \x01(\x05\x12\x0c\n\x04user\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\t\x12\x10\n\x08\x64\x61tabase\x18\x07 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n\x12proto/config.proto\x12\x1a\x61shwin.stocksbalancer.spec\"\xf7\x01\n\x06\x43onfig\x12\x31\n\x06stocks\x18\x01 \x03(\x0b\x32!.ashwin.stocksbalancer.spec.Stock\x12\x43\n\x0f\x64ownload_config\x18\x02 \x01(\x0b\x32*.ashwin.stocksbalancer.spec.DownloadConfig\x12=\n\x0ctimescale_db\x18\x03 \x01(\x0b\x32\'.ashwin.stocksbalancer.spec.TimescaleDb\x12\x36\n\x08\x63urrency\x18\x04 \x01(\x0b\x32$.ashwin.stocksbalancer.spec.Currency\"h\n\x08\x43urrency\x12\x15\n\rbase_currency\x18\x01 \x01(\t\x12\x45\n\x10other_currencies\x18\x02 \x03(\x0b\x32+.ashwin.stocksbalancer.spec.OtherCurrencies\">\n\x0fOtherCurrencies\x12\x10\n\x08\x63urrency\x18\x01 \x01(\t\x12\x19\n\x11\x66irst_transaction\x18\x02 \x01(\t\"\xa4\x01\n\x05Stock\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x19\n\x11\x66irst_transaction\x18\x02 \x01(\t\x12\x36\n\x03\x61pi\x18\x03 \x01(\x0e\x32).ashwin.stocksbalancer.spec.Stock.ApiKind\x12\x10\n\x08\x63urrency\x18\x04 \x01(\t\"&\n\x07\x41piKind\x12\x10\n\x0c\x41lphavantage\x10\x00\x12\t\n\x05Yahoo\x10\x01\"\xa1\x02\n\x0e\x44ownloadConfig\x12\x13\n\x0b\x64\x61te_format\x18\x01 \x01(\t\x12\x63\n\x18\x61lphavantage_output_size\x18\x02 \x01(\x0e\x32\x41.ashwin.stocksbalancer.spec.DownloadConfig.AlphavantageOutputSize\x12L\n\x0cyahoo_period\x18\x03 \x01(\x0e\x32\x36.ashwin.stocksbalancer.spec.DownloadConfig.YahooPeriod\"/\n\x16\x41lphavantageOutputSize\x12\x08\n\x04\x66ull\x10\x00\x12\x0b\n\x07\x63ompact\x10\x01\"\x16\n\x0bYahooPeriod\x12\x07\n\x03max\x10\x00\"\x8d\x01\n\x0bTimescaleDb\x12\x17\n\x0fmin_connections\x18\x01 \x01(\x05\x12\x17\n\x0fmax_connections\x18\x02 \x01(\x05\x12\x0c\n\x04user\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\t\x12\x10\n\x08\x64\x61tabase\x18\x07 \x01(\tb\x06proto3')
 )
 
 
@@ -63,8 +63,8 @@ _DOWNLOADCONFIG_ALPHAVANTAGEOUTPUTSIZE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=933,
-  serialized_end=980,
+  serialized_start=856,
+  serialized_end=903,
 )
 _sym_db.RegisterEnumDescriptor(_DOWNLOADCONFIG_ALPHAVANTAGEOUTPUTSIZE)
 
@@ -81,8 +81,8 @@ _DOWNLOADCONFIG_YAHOOPERIOD = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=982,
-  serialized_end=1004,
+  serialized_start=905,
+  serialized_end=927,
 )
 _sym_db.RegisterEnumDescriptor(_DOWNLOADCONFIG_YAHOOPERIOD)
 
@@ -276,36 +276,22 @@ _DOWNLOADCONFIG = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='max_tries_before_end_of_trading', full_name='ashwin.stocksbalancer.spec.DownloadConfig.max_tries_before_end_of_trading', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='date_format', full_name='ashwin.stocksbalancer.spec.DownloadConfig.date_format', index=1,
-      number=2, type=9, cpp_type=9, label=1,
+      name='date_format', full_name='ashwin.stocksbalancer.spec.DownloadConfig.date_format', index=0,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='batch_size_for_persistence', full_name='ashwin.stocksbalancer.spec.DownloadConfig.batch_size_for_persistence', index=2,
-      number=3, type=5, cpp_type=1, label=1,
+      name='alphavantage_output_size', full_name='ashwin.stocksbalancer.spec.DownloadConfig.alphavantage_output_size', index=1,
+      number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='alphavantage_output_size', full_name='ashwin.stocksbalancer.spec.DownloadConfig.alphavantage_output_size', index=3,
-      number=4, type=14, cpp_type=8, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='yahoo_period', full_name='ashwin.stocksbalancer.spec.DownloadConfig.yahoo_period', index=4,
-      number=5, type=14, cpp_type=8, label=1,
+      name='yahoo_period', full_name='ashwin.stocksbalancer.spec.DownloadConfig.yahoo_period', index=2,
+      number=3, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -325,7 +311,7 @@ _DOWNLOADCONFIG = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=638,
-  serialized_end=1004,
+  serialized_end=927,
 )
 
 
@@ -397,8 +383,8 @@ _TIMESCALEDB = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1007,
-  serialized_end=1148,
+  serialized_start=930,
+  serialized_end=1071,
 )
 
 _CONFIG.fields_by_name['stocks'].message_type = _STOCK
