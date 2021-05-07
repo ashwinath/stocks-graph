@@ -7,6 +7,11 @@ message Config {
     DownloadConfig download_config = 2;
     TimescaleDb timescale_db = 3;
     Currency currency = 4;
+    Trades trades = 5;
+}
+
+message Trades {
+    string folder = 1;
 }
 
 message Currency {

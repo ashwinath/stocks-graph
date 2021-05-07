@@ -1,6 +1,7 @@
 import psycopg2
 import psycopg2.pool
-from datetime import datetime
+
+from typing import List
 
 class TimescaleDB(object):
     def __init__(self, config):
@@ -32,20 +33,32 @@ class TimescaleDB(object):
                 );
                 """
             )
+            cursor.execute("DROP TABLE IF EXISTS trades;")
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS trades (
+                    time   TIMESTAMP NOT NULL,
+                    date   DATE NOT NULL,
+                    symbol TEXT NOT NULL,
+                    price_each  DOUBLE PRECISION NOT NULL,
+                    quantity INTEGER NOT NULL,
+                    currency TEXT NOT NULL,
+                    total_in_base_currency DOUBLE PRECISION NOT NULL
+                );
+                """
+            )
             connection.commit()
         finally:
             if connection:
-                connection.close()
+                self._db.putconn(connection)
             if cursor:
                 cursor.close()
 
-    def write(self, stock_data_bulk):
+    def save_stocks(self, stock_data_bulk):
         connection = None
         cursor = None
         try:
             connection = self._db.getconn()
             cursor = connection.cursor()
-            # TODO: change to bulk insert
             for stock in stock_data_bulk:
                 cursor.execute("""
                     INSERT INTO stocks_history
@@ -63,6 +76,63 @@ class TimescaleDB(object):
             connection.commit()
         finally:
             if connection:
-                connection.close()
+                self._db.putconn(connection)
+            if cursor:
+                cursor.close()
+
+    def query_price_stock_by_date_and_symbol(self, date: str, symbol: str):
+        connection = None
+        cursor = None
+        try:
+            connection = self._db.getconn()
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT
+                    price
+                FROM
+                    stocks_history
+                WHERE
+                    symbol = %(symbol)s
+                    AND date = %(date)s
+                LIMIT 1;
+                """,
+                {
+                    "symbol": symbol,
+                    "date": date,
+                }
+            )
+            result = cursor.fetchone()
+            return result[0] if result is not None else None
+        finally:
+            if connection:
+                self._db.putconn(connection)
+            if cursor:
+                cursor.close()
+
+    def save_trades(self, trade_data_bulk: List[dict]):
+        connection = None
+        cursor = None
+        try:
+            connection = self._db.getconn()
+            cursor = connection.cursor()
+            for stock in trade_data_bulk:
+                cursor.execute("""
+                    INSERT INTO trades
+                    VALUES (%s, %s, %s, %s, %s, %s, %s);
+                    """,
+                    (
+                        stock["ts"],
+                        stock["date"],
+                        stock["symbol"],
+                        stock["price_each"],
+                        stock["quantity"],
+                        stock["currency"],
+                        stock["total_in_base_currency"],
+                    ),
+                )
+            connection.commit()
+        finally:
+            if connection:
+                self._db.putconn(connection)
             if cursor:
                 cursor.close()

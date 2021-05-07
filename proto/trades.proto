@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package ashwin.stocksbalancer.spec;
+
+message TradeHistory {
+    repeated Trade trades = 1;
+}
+
+message Trade {
+    enum Type {
+        buy = 0;
+        sell = 1;
+    }
+
+    string symbol = 1;
+    int32 quantity = 2;
+    float price_each = 3;
+    string date = 4;
+    Type type = 5;
+    string currency = 6;
+}
