@@ -5,15 +5,30 @@ proto:
 		--mypy_out=generated \
 		proto/*.proto
 
-.PHONY: questdb
-questdb:
+.PHONY: timescaledb
+timescaledb:
 	docker run -d \
-		--name questdb \
-		-p 9000:9000 \
-		-p 8812:8812 \
-		-v /etc/questdb:/root/.questdb/db \
-		questdb/questdb:5.0.6.2-linux-amd64
+		--name timescaledb \
+		-p 5432:5432 \
+		-e POSTGRES_PASSWORD=password \
+		-v /etc/timescaledb:/var/lib/postgresql/data \
+		timescale/timescaledb:latest-pg12
 
 .PHONY: connectdb
 connectdb:
-	docker run --rm -ti -e POSTGRES_PASSWORD=mysecretpassword -e PGPASSWORD=quest --net host postgres:12 psql -U admin -d qdb -p 8812 -h localhost
+	docker run --rm \
+		-ti \
+		-e POSTGRES_PASSWORD=password \
+		-e PGPASSWORD=password \
+		--net host \
+		postgres:12 psql -U postgres -d postgres -p 5432 -h localhost
+
+.PHONY: grafana
+grafana:
+	docker volume create grafana-storage
+	docker run -d \
+		--net host \
+		--name=grafana \
+		-e "GF_INSTALL_PLUGINS=grafana-piechart-panel" \
+		-v grafana-storage:/var/lib/grafana \
+		grafana/grafana:7.4.2

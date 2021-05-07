@@ -10,11 +10,11 @@ downloadConfig:
   dateFormat: "YYYY-MM-DD"
   batchSizeForPersistence: 20
 
-questDb:
+timescaleDb:
   minConnections: 5
   maxConnections: 20
-  user: admin
-  password: quest
+  user: postgres
+  password: password
   host: "127.0.0.1"
-  port: "8812"
-  database: qdb
+  port: "5432"
+  database: postgres

@@ -5,7 +5,7 @@ package ashwin.stocksbalancer.spec;
 message Config {
     repeated Stock stocks = 1;
     DownloadConfig download_config = 2;
-    QuestDb quest_db = 3;
+    TimescaleDb timescale_db = 3;
 }
 
 message Stock {
@@ -20,7 +20,7 @@ message DownloadConfig {
     int32 batch_size_for_persistence = 4;
 }
 
-message QuestDb {
+message TimescaleDb {
     int32 min_connections = 1;
     int32 max_connections = 2;
     string user = 3;

@@ -2,7 +2,7 @@ import psycopg2
 import psycopg2.pool
 from datetime import datetime
 
-class QuestDB(object):
+class TimescaleDB(object):
     def __init__(self, config):
         self._db =  psycopg2.pool.ThreadedConnectionPool(
             minconn=config.min_connections,
@@ -23,11 +23,11 @@ class QuestDB(object):
             cursor = connection.cursor()
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS stocks_history (
-                    ts TIMESTAMP,
-                    date DATE,
-                    symbol STRING,
-                    price double
-                ) timestamp(ts);
+                    time   TIMESTAMP NOT NULL,
+                    date   DATE NOT NULL,
+                    symbol TEXT NOT NULL,
+                    price  DOUBLE PRECISION NOT NULL
+                );
                 """
             )
             connection.commit()
