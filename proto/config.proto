@@ -6,6 +6,17 @@ message Config {
     repeated Stock stocks = 1;
     DownloadConfig download_config = 2;
     TimescaleDb timescale_db = 3;
+    Currency currency = 4;
+}
+
+message Currency {
+    string base_currency = 1;
+    repeated OtherCurrencies other_currencies = 2;
+}
+
+message OtherCurrencies {
+    string currency = 1;
+    string first_transaction = 2;
 }
 
 message Stock {
@@ -17,6 +28,7 @@ message Stock {
     string symbol = 1;
     string first_transaction = 2;
     ApiKind api = 3;
+    string currency = 4;
 }
 
 message DownloadConfig {

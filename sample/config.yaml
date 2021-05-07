@@ -2,12 +2,15 @@ stocks:
 - symbol: IWDA.LON
   firstTransaction: "2021-03-11"
   api: Alphavantage
+  currency: USD
 - symbol: CSPX.LON
   first_transaction: "2021-03-29"
   api: Alphavantage
+  currency: USD
 - symbol: MBH.SI
   first_transaction: "2021-04-04"
   api: Yahoo
+  currency: SGD
 
 downloadConfig:
   maxTriesBeforeEndOfTrading: 30
@@ -24,3 +27,9 @@ timescaleDb:
   host: "127.0.0.1"
   port: "5432"
   database: postgres
+
+currency:
+  baseCurrency: USD
+  otherCurrencies:
+  - currency: SGD
+    firstTransaction: "2021-04-04"

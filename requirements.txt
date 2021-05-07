@@ -6,9 +6,13 @@ attrs==20.3.0
 certifi==2020.12.5
 chardet==4.0.0
 idna==2.10
+lxml==4.6.3
 msgpack==1.0.2
 multidict==5.1.0
+multitasking==0.0.9
 mypy-protobuf==2.4
+numpy==1.20.2
+pandas==1.2.4
 protobuf==3.15.8
 psycopg2-binary==2.8.6
 python-dateutil==2.8.1
@@ -20,3 +24,4 @@ six==1.16.0
 typing-extensions==3.10.0.0
 urllib3==1.26.4
 yarl==1.6.3
+yfinance==0.1.59

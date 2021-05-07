@@ -26,8 +26,9 @@ def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]],
                 "date": arrow.get(key.to_pydatetime()).format(config.download_config.date_format),
                 "symbol": stock.symbol,
                 "price": value,
+                "currency": stock.currency,
             } for key, value in data.items()
         ]
 
-        logging.info("Done downloading stock history from Yahoo.")
         yield all_stocks
+    logging.info("Done downloading stock history from Yahoo.")

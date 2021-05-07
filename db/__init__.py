@@ -27,6 +27,7 @@ class TimescaleDB(object):
                     date   DATE NOT NULL,
                     symbol TEXT NOT NULL,
                     price  DOUBLE PRECISION NOT NULL,
+                    currency TEXT NOT NULL,
                     CONSTRAINT unique_date_symbol UNIQUE (date, symbol)
                 );
                 """
@@ -48,7 +49,7 @@ class TimescaleDB(object):
             for stock in stock_data_bulk:
                 cursor.execute("""
                     INSERT INTO stocks_history
-                    VALUES (%s, %s, %s, %s)
+                    VALUES (%s, %s, %s, %s, %s)
                     ON CONFLICT DO NOTHING;
                     """,
                     (
@@ -56,6 +57,7 @@ class TimescaleDB(object):
                         stock["date"],
                         stock["symbol"],
                         stock["price"],
+                        stock["currency"],
                     ),
                 )
             connection.commit()

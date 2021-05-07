@@ -13,10 +13,11 @@ def create_dependencies(config: Config) -> SimpleNamespace:
         timescale_db=timescale_db,
     )
 
-def download_stocks_data(config, dependencies):
+def download_data(config, dependencies):
     download_functions = [
         service.alphavantage.download_data,
         service.yahoo.download_data,
+        service.alphavantage.download_foreign_exchange,
     ]
     for download_function in download_functions:
         for batch in download_function(config):
@@ -26,7 +27,7 @@ def main():
     logger.init_logger()
     config = parse_args()
     dependencies = create_dependencies(config)
-    download_stocks_data(config, dependencies)
+    download_data(config, dependencies)
 
 if __name__ == "__main__":
     main()

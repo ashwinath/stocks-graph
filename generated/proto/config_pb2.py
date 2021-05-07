@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ashwin.stocksbalancer.spec',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x12proto/config.proto\x12\x1a\x61shwin.stocksbalancer.spec\"\xbf\x01\n\x06\x43onfig\x12\x31\n\x06stocks\x18\x01 \x03(\x0b\x32!.ashwin.stocksbalancer.spec.Stock\x12\x43\n\x0f\x64ownload_config\x18\x02 \x01(\x0b\x32*.ashwin.stocksbalancer.spec.DownloadConfig\x12=\n\x0ctimescale_db\x18\x03 \x01(\x0b\x32\'.ashwin.stocksbalancer.spec.TimescaleDb\"\x92\x01\n\x05Stock\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x19\n\x11\x66irst_transaction\x18\x02 \x01(\t\x12\x36\n\x03\x61pi\x18\x03 \x01(\x0e\x32).ashwin.stocksbalancer.spec.Stock.ApiKind\"&\n\x07\x41piKind\x12\x10\n\x0c\x41lphavantage\x10\x00\x12\t\n\x05Yahoo\x10\x01\"\xee\x02\n\x0e\x44ownloadConfig\x12\'\n\x1fmax_tries_before_end_of_trading\x18\x01 \x01(\x05\x12\x13\n\x0b\x64\x61te_format\x18\x02 \x01(\t\x12\"\n\x1a\x62\x61tch_size_for_persistence\x18\x03 \x01(\x05\x12\x63\n\x18\x61lphavantage_output_size\x18\x04 \x01(\x0e\x32\x41.ashwin.stocksbalancer.spec.DownloadConfig.AlphavantageOutputSize\x12L\n\x0cyahoo_period\x18\x05 \x01(\x0e\x32\x36.ashwin.stocksbalancer.spec.DownloadConfig.YahooPeriod\"/\n\x16\x41lphavantageOutputSize\x12\x08\n\x04\x66ull\x10\x00\x12\x0b\n\x07\x63ompact\x10\x01\"\x16\n\x0bYahooPeriod\x12\x07\n\x03max\x10\x00\"\x8d\x01\n\x0bTimescaleDb\x12\x17\n\x0fmin_connections\x18\x01 \x01(\x05\x12\x17\n\x0fmax_connections\x18\x02 \x01(\x05\x12\x0c\n\x04user\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\t\x12\x10\n\x08\x64\x61tabase\x18\x07 \x01(\tb\x06proto3')
+  serialized_pb=_b('\n\x12proto/config.proto\x12\x1a\x61shwin.stocksbalancer.spec\"\xf7\x01\n\x06\x43onfig\x12\x31\n\x06stocks\x18\x01 \x03(\x0b\x32!.ashwin.stocksbalancer.spec.Stock\x12\x43\n\x0f\x64ownload_config\x18\x02 \x01(\x0b\x32*.ashwin.stocksbalancer.spec.DownloadConfig\x12=\n\x0ctimescale_db\x18\x03 \x01(\x0b\x32\'.ashwin.stocksbalancer.spec.TimescaleDb\x12\x36\n\x08\x63urrency\x18\x04 \x01(\x0b\x32$.ashwin.stocksbalancer.spec.Currency\"h\n\x08\x43urrency\x12\x15\n\rbase_currency\x18\x01 \x01(\t\x12\x45\n\x10other_currencies\x18\x02 \x03(\x0b\x32+.ashwin.stocksbalancer.spec.OtherCurrencies\">\n\x0fOtherCurrencies\x12\x10\n\x08\x63urrency\x18\x01 \x01(\t\x12\x19\n\x11\x66irst_transaction\x18\x02 \x01(\t\"\xa4\x01\n\x05Stock\x12\x0e\n\x06symbol\x18\x01 \x01(\t\x12\x19\n\x11\x66irst_transaction\x18\x02 \x01(\t\x12\x36\n\x03\x61pi\x18\x03 \x01(\x0e\x32).ashwin.stocksbalancer.spec.Stock.ApiKind\x12\x10\n\x08\x63urrency\x18\x04 \x01(\t\"&\n\x07\x41piKind\x12\x10\n\x0c\x41lphavantage\x10\x00\x12\t\n\x05Yahoo\x10\x01\"\xee\x02\n\x0e\x44ownloadConfig\x12\'\n\x1fmax_tries_before_end_of_trading\x18\x01 \x01(\x05\x12\x13\n\x0b\x64\x61te_format\x18\x02 \x01(\t\x12\"\n\x1a\x62\x61tch_size_for_persistence\x18\x03 \x01(\x05\x12\x63\n\x18\x61lphavantage_output_size\x18\x04 \x01(\x0e\x32\x41.ashwin.stocksbalancer.spec.DownloadConfig.AlphavantageOutputSize\x12L\n\x0cyahoo_period\x18\x05 \x01(\x0e\x32\x36.ashwin.stocksbalancer.spec.DownloadConfig.YahooPeriod\"/\n\x16\x41lphavantageOutputSize\x12\x08\n\x04\x66ull\x10\x00\x12\x0b\n\x07\x63ompact\x10\x01\"\x16\n\x0bYahooPeriod\x12\x07\n\x03max\x10\x00\"\x8d\x01\n\x0bTimescaleDb\x12\x17\n\x0fmin_connections\x18\x01 \x01(\x05\x12\x17\n\x0fmax_connections\x18\x02 \x01(\x05\x12\x0c\n\x04user\x18\x03 \x01(\t\x12\x10\n\x08password\x18\x04 \x01(\t\x12\x0c\n\x04host\x18\x05 \x01(\t\x12\x0c\n\x04port\x18\x06 \x01(\t\x12\x10\n\x08\x64\x61tabase\x18\x07 \x01(\tb\x06proto3')
 )
 
 
@@ -41,8 +41,8 @@ _STOCK_APIKIND = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=353,
-  serialized_end=391,
+  serialized_start=597,
+  serialized_end=635,
 )
 _sym_db.RegisterEnumDescriptor(_STOCK_APIKIND)
 
@@ -63,8 +63,8 @@ _DOWNLOADCONFIG_ALPHAVANTAGEOUTPUTSIZE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=689,
-  serialized_end=736,
+  serialized_start=933,
+  serialized_end=980,
 )
 _sym_db.RegisterEnumDescriptor(_DOWNLOADCONFIG_ALPHAVANTAGEOUTPUTSIZE)
 
@@ -81,8 +81,8 @@ _DOWNLOADCONFIG_YAHOOPERIOD = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=738,
-  serialized_end=760,
+  serialized_start=982,
+  serialized_end=1004,
 )
 _sym_db.RegisterEnumDescriptor(_DOWNLOADCONFIG_YAHOOPERIOD)
 
@@ -115,6 +115,13 @@ _CONFIG = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='currency', full_name='ashwin.stocksbalancer.spec.Config.currency', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -128,7 +135,83 @@ _CONFIG = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=51,
-  serialized_end=242,
+  serialized_end=298,
+)
+
+
+_CURRENCY = _descriptor.Descriptor(
+  name='Currency',
+  full_name='ashwin.stocksbalancer.spec.Currency',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='base_currency', full_name='ashwin.stocksbalancer.spec.Currency.base_currency', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='other_currencies', full_name='ashwin.stocksbalancer.spec.Currency.other_currencies', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=300,
+  serialized_end=404,
+)
+
+
+_OTHERCURRENCIES = _descriptor.Descriptor(
+  name='OtherCurrencies',
+  full_name='ashwin.stocksbalancer.spec.OtherCurrencies',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='currency', full_name='ashwin.stocksbalancer.spec.OtherCurrencies.currency', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='first_transaction', full_name='ashwin.stocksbalancer.spec.OtherCurrencies.first_transaction', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=406,
+  serialized_end=468,
 )
 
 
@@ -160,6 +243,13 @@ _STOCK = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='currency', full_name='ashwin.stocksbalancer.spec.Stock.currency', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -173,8 +263,8 @@ _STOCK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=245,
-  serialized_end=391,
+  serialized_start=471,
+  serialized_end=635,
 )
 
 
@@ -234,8 +324,8 @@ _DOWNLOADCONFIG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=394,
-  serialized_end=760,
+  serialized_start=638,
+  serialized_end=1004,
 )
 
 
@@ -307,13 +397,15 @@ _TIMESCALEDB = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=763,
-  serialized_end=904,
+  serialized_start=1007,
+  serialized_end=1148,
 )
 
 _CONFIG.fields_by_name['stocks'].message_type = _STOCK
 _CONFIG.fields_by_name['download_config'].message_type = _DOWNLOADCONFIG
 _CONFIG.fields_by_name['timescale_db'].message_type = _TIMESCALEDB
+_CONFIG.fields_by_name['currency'].message_type = _CURRENCY
+_CURRENCY.fields_by_name['other_currencies'].message_type = _OTHERCURRENCIES
 _STOCK.fields_by_name['api'].enum_type = _STOCK_APIKIND
 _STOCK_APIKIND.containing_type = _STOCK
 _DOWNLOADCONFIG.fields_by_name['alphavantage_output_size'].enum_type = _DOWNLOADCONFIG_ALPHAVANTAGEOUTPUTSIZE
@@ -321,6 +413,8 @@ _DOWNLOADCONFIG.fields_by_name['yahoo_period'].enum_type = _DOWNLOADCONFIG_YAHOO
 _DOWNLOADCONFIG_ALPHAVANTAGEOUTPUTSIZE.containing_type = _DOWNLOADCONFIG
 _DOWNLOADCONFIG_YAHOOPERIOD.containing_type = _DOWNLOADCONFIG
 DESCRIPTOR.message_types_by_name['Config'] = _CONFIG
+DESCRIPTOR.message_types_by_name['Currency'] = _CURRENCY
+DESCRIPTOR.message_types_by_name['OtherCurrencies'] = _OTHERCURRENCIES
 DESCRIPTOR.message_types_by_name['Stock'] = _STOCK
 DESCRIPTOR.message_types_by_name['DownloadConfig'] = _DOWNLOADCONFIG
 DESCRIPTOR.message_types_by_name['TimescaleDb'] = _TIMESCALEDB
@@ -332,6 +426,20 @@ Config = _reflection.GeneratedProtocolMessageType('Config', (_message.Message,),
   # @@protoc_insertion_point(class_scope:ashwin.stocksbalancer.spec.Config)
   ))
 _sym_db.RegisterMessage(Config)
+
+Currency = _reflection.GeneratedProtocolMessageType('Currency', (_message.Message,), dict(
+  DESCRIPTOR = _CURRENCY,
+  __module__ = 'proto.config_pb2'
+  # @@protoc_insertion_point(class_scope:ashwin.stocksbalancer.spec.Currency)
+  ))
+_sym_db.RegisterMessage(Currency)
+
+OtherCurrencies = _reflection.GeneratedProtocolMessageType('OtherCurrencies', (_message.Message,), dict(
+  DESCRIPTOR = _OTHERCURRENCIES,
+  __module__ = 'proto.config_pb2'
+  # @@protoc_insertion_point(class_scope:ashwin.stocksbalancer.spec.OtherCurrencies)
+  ))
+_sym_db.RegisterMessage(OtherCurrencies)
 
 Stock = _reflection.GeneratedProtocolMessageType('Stock', (_message.Message,), dict(
   DESCRIPTOR = _STOCK,
