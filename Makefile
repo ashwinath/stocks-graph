@@ -14,8 +14,14 @@ timescaledb:
 		-v /etc/timescaledb:/var/lib/postgresql/data \
 		timescale/timescaledb:latest-pg12
 
-.PHONY: connectdb
-connectdb:
+.PHONY: remove-timescaledb
+remove-timescaledb:
+	docker stop timescaledb
+	docker rm timescaledb
+	rm -rf /etc/timescaledb
+
+.PHONY: connect-db
+connect-db:
 	docker run --rm \
 		-ti \
 		-e POSTGRES_PASSWORD=password \

@@ -26,7 +26,8 @@ class TimescaleDB(object):
                     time   TIMESTAMP NOT NULL,
                     date   DATE NOT NULL,
                     symbol TEXT NOT NULL,
-                    price  DOUBLE PRECISION NOT NULL
+                    price  DOUBLE PRECISION NOT NULL,
+                    CONSTRAINT unique_date_symbol UNIQUE (date, symbol)
                 );
                 """
             )
@@ -47,7 +48,8 @@ class TimescaleDB(object):
             for stock in stock_data_bulk:
                 cursor.execute("""
                     INSERT INTO stocks_history
-                    VALUES (%s, %s, %s, %s);
+                    VALUES (%s, %s, %s, %s)
+                    ON CONFLICT DO NOTHING;
                     """,
                     (
                         stock["ts"],
@@ -57,10 +59,6 @@ class TimescaleDB(object):
                     ),
                 )
             connection.commit()
-            cursor.execute("SELECT * FROM stocks_history;")
-            records = cursor.fetchall()
-            for row in records:
-                print(row)
         finally:
             if connection:
                 connection.close()
