@@ -4,6 +4,7 @@ import yfinance as yf
 
 from generated.proto.config_pb2 import Config, Stock, DownloadConfig
 from typing import Generator, List, Dict, Union
+from . import patch_missing_data
 
 def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]], None, None]:
     logging.info("Downloading stock history from Yahoo.")
@@ -18,6 +19,7 @@ def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]],
             interval="1d",
         )
         history_df = history_df[history_df.index >= stock.first_transaction]
+        history_df = patch_missing_data(history_df, stock)
         date_close_series = history_df["Close"]
         data = date_close_series.to_dict()
         all_stocks = [

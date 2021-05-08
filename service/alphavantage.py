@@ -1,10 +1,12 @@
 import arrow
+import pandas
 import logging
 
 from alpha_vantage.timeseries import TimeSeries
 from alpha_vantage.foreignexchange import ForeignExchange
-from generated.proto.config_pb2 import Config, Stock, DownloadConfig
+from generated.proto.config_pb2 import Config, Stock, DownloadConfig, OtherCurrencies
 from typing import Generator, List, Dict, Union
+from . import patch_missing_data
 
 def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]], None, None]:
     logging.info("Downloading stock history from Alphavantage.")
@@ -20,6 +22,7 @@ def download_data(config: Config) -> Generator[List[Dict[str, Union[str, int]]],
             ),
         )
         df = df[df.index >= stock.first_transaction]
+        df = patch_missing_data(df, stock)
         data_close_series = df["5. adjusted close"]
         data = data_close_series.to_dict()
         all_stocks = [
@@ -47,7 +50,8 @@ def download_foreign_exchange(config: Config) -> Generator[List[Dict[str, Union[
                 config.download_config.alphavantage_output_size,
             ),
         )
-        df = df[df.index >= other_currency.first_transaction]
+        df[df.index >= other_currency.first_transaction]
+        df = patch_missing_data(df, other_currency)
         data_close_series = df["4. close"]
         data = data_close_series.to_dict()
         all_fx = [
