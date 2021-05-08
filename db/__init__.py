@@ -237,6 +237,13 @@ class TimescaleDB(object):
                     symbol
                 FROM
                     stocks_history
+                WHERE
+                    symbol in (
+                        SELECT
+                            DISTINCT(symbol)
+                        FROM
+                            trades
+                    )
                 ORDER BY
                     date,
                     symbol
