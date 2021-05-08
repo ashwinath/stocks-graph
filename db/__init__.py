@@ -46,6 +46,7 @@ class TimescaleDB(object):
                 );
                 """
             )
+            cursor.execute("DROP INDEX IF EXISTS stats_time_ix;")
             cursor.execute("DROP TABLE IF EXISTS stats;")
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS stats (
@@ -58,6 +59,7 @@ class TimescaleDB(object):
                 );
                 """
             )
+            cursor.execute("CREATE INDEX stats_time_ix ON stats(time);")
             connection.commit()
         finally:
             if connection:
