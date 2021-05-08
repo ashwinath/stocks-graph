@@ -40,3 +40,8 @@ grafana:
 		-e "GF_INSTALL_PLUGINS=grafana-piechart-panel" \
 		-v grafana-storage:/var/lib/grafana \
 		grafana/grafana:7.4.2
+
+.PHONY: build-image
+build-image:
+	docker build -t ashwinath/stocks-graph .
+	docker push ashwinath/stocks-graph
