@@ -10,6 +10,7 @@ timescaledb:
 	docker run -d \
 		--name timescaledb \
 		-p 5432:5432 \
+		--restart always \
 		-e POSTGRES_PASSWORD=password \
 		-v /etc/timescaledb:/var/lib/postgresql/data \
 		timescale/timescaledb:latest-pg12
@@ -35,6 +36,7 @@ grafana:
 	docker run -d \
 		--net host \
 		--name=grafana \
+		--restart always \
 		-e "GF_INSTALL_PLUGINS=grafana-piechart-panel" \
 		-v grafana-storage:/var/lib/grafana \
 		grafana/grafana:7.4.2
