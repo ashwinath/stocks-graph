@@ -34,3 +34,6 @@ currency:
 
 trades:
   folder: sample/trades/
+
+stats:
+  batchSize: 50

@@ -46,6 +46,18 @@ class TimescaleDB(object):
                 );
                 """
             )
+            cursor.execute("DROP TABLE IF EXISTS stats;")
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS stats (
+                    time   TIMESTAMP NOT NULL,
+                    date   DATE NOT NULL,
+                    symbol TEXT NOT NULL,
+                    principal  DOUBLE PRECISION,
+                    nav DOUBLE PRECISION,
+                    returns_percentage DOUBLE PRECISION
+                );
+                """
+            )
             connection.commit()
         finally:
             if connection:
@@ -131,6 +143,115 @@ class TimescaleDB(object):
                     ),
                 )
             connection.commit()
+        finally:
+            if connection:
+                self._db.putconn(connection)
+            if cursor:
+                cursor.close()
+
+    def save_stats(self, stats_data_bulk: List[dict]):
+        connection = None
+        cursor = None
+        try:
+            connection = self._db.getconn()
+            cursor = connection.cursor()
+            for stats in stats_data_bulk:
+                cursor.execute("""
+                    WITH a AS (
+                        SELECT
+                            SUM(quantity) AS qty,
+                            SUM(total_in_base_currency) AS principal
+                        FROM
+                            trades
+                        WHERE
+                            date <= %(date)s
+                            AND symbol = %(symbol)s
+                        LIMIT 1
+                    ),
+                    forex AS (
+                        SELECT COALESCE(
+                            (
+                                SELECT
+                                    price
+                                FROM
+                                    stocks_history
+                                WHERE
+                                    date <= %(date)s
+                                    AND symbol = (
+                                        SELECT
+                                            currency
+                                        FROM
+                                            stocks_history
+                                        WHERE
+                                            date = %(date)s
+                                            AND symbol = %(symbol)s
+                                        LIMIT 1
+                                    )
+                                LIMIT 1
+                            ),
+                            1
+                        ) AS exchange_rate
+                        LIMIT 1
+                    )
+                    INSERT INTO
+                        stats (
+                            time,
+                            date,
+                            symbol,
+                            principal,
+                            nav,
+                            returns_percentage
+                        )
+                    SELECT
+                        time,
+                        date,
+                        symbol,
+                        a.principal AS principal,
+                        a.qty * stocks_history.price * forex.exchange_rate AS nav,
+                        ((a.qty * stocks_history.price * forex.exchange_rate) - a.principal) / a.principal * 100 AS returns_percentage
+                    FROM
+                        a, stocks_history, forex
+                    WHERE
+                        stocks_history.date = %(date)s
+                        AND symbol = %(symbol)s
+                    LIMIT 1;
+                    """,
+                    stats,
+                )
+            connection.commit()
+        finally:
+            if connection:
+                self._db.putconn(connection)
+            if cursor:
+                cursor.close()
+
+    def query_date_symbol_paginated(self, limit: int, offset: int):
+        connection = None
+        cursor = None
+        try:
+            connection = self._db.getconn()
+            cursor = connection.cursor()
+            cursor.execute(f"""
+                SELECT
+                    date,
+                    symbol
+                FROM
+                    stocks_history
+                ORDER BY
+                    date,
+                    symbol
+                limit {limit}
+                offset {offset};
+                """,
+            )
+            results = cursor.fetchall()
+            return [
+                {
+                    "date": result[0],
+                    "symbol": result[1],
+                } for result in results
+            ]
+
         finally:
             if connection:
                 self._db.putconn(connection)

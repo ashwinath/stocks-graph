@@ -8,6 +8,11 @@ message Config {
     TimescaleDb timescale_db = 3;
     Currency currency = 4;
     Trades trades = 5;
+    Stats stats = 6;
+}
+
+message Stats {
+    int32 batch_size = 1;
 }
 
 message Trades {
