@@ -1,5 +1,4 @@
 import argparse
-import os
 import yaml
 
 from google.protobuf import json_format
@@ -10,7 +9,6 @@ def parse_args() -> Config:
     parser.add_argument(
         '--config',
         dest='config',
-        default=os.environ.get('CONFIG'),
         type=str,
         required=True,
         help='Path to the config YAML file specification',
