@@ -210,7 +210,10 @@ class TimescaleDB(object):
                         symbol,
                         a.principal AS principal,
                         a.qty * stocks_history.price * forex.exchange_rate AS nav,
-                        ((a.qty * stocks_history.price * forex.exchange_rate) - a.principal) / a.principal * 100 AS returns_percentage
+                        CASE
+                            WHEN a.qty = 0 THEN 0
+                            ELSE ((a.qty * stocks_history.price * forex.exchange_rate) - a.principal) / a.principal * 100
+                        END AS returns_percentage
                     FROM
                         a, stocks_history, forex
                     WHERE

@@ -21,6 +21,8 @@ class TradeManager(Manager):
             logging.info(f"Processing trade: {trade.symbol}, date: {trade.date}")
             ts = arrow.get(trade.date).datetime.replace(tzinfo=None)
             total_in_base_currency = self._calculate_base_currency(trade)
+            if trade.type == Trade.sell:
+                trade.quantity *= -1
 
             trade_model = {
                 "ts": ts,
