@@ -219,6 +219,7 @@ class TimescaleDB(object):
                     WHERE
                         stocks_history.date = %(date)s
                         AND symbol = %(symbol)s
+                        AND a.principal > 0
                     LIMIT 1;
                     """,
                     stats,
