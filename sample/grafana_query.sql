@@ -40,3 +40,14 @@ WHERE
   $__timeFilter(time)
 GROUP BY time
 ORDER BY time
+
+
+-- Piechart on Portfolio
+SELECT 
+    time_bucket('1 day', time) as time,
+    symbol,
+    sum(nav) as nav
+FROM stats
+WHERE
+    time=DATE_TRUNC('day', CURRENT_TIMESTAMP - INTERVAL '1 day')
+GROUP BY time, symbol
