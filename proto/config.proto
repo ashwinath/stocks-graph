@@ -32,7 +32,6 @@ message OtherCurrencies {
 message Stock {
     enum ApiKind {
         Alphavantage = 0;
-        Yahoo = 1; // Yahoo should not be used whenever possible because it's inaccurate
     }
 
     string symbol = 1;
@@ -46,13 +45,9 @@ message DownloadConfig {
         full = 0;
         compact = 1;
     }
-    enum YahooPeriod {
-        max = 0;
-    }
+
     string date_format = 1;
     AlphavantageOutputSize alphavantage_output_size = 2;
-    YahooPeriod yahoo_period = 3;
-    
 }
 
 message TimescaleDb {

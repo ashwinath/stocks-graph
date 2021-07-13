@@ -1,6 +1,5 @@
 import db
 import logger
-import service.yahoo
 import service.alphavantage
 
 from config.parser import parse_args
@@ -23,7 +22,6 @@ def create_dependencies(config: Config) -> SimpleNamespace:
 def download_data(config, dependencies):
     download_functions = [
         service.alphavantage.download_data,
-        service.yahoo.download_data,
         service.alphavantage.download_foreign_exchange,
     ]
     for download_function in download_functions:
